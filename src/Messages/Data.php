@@ -43,6 +43,9 @@ trait Data
     /** @var \ATDev\RocketChat\Channels\Collection Channels mentioned in message */
     private $channels;
 
+    /** @var string tmid */
+    private $tmid;
+
     /**
      * Class constructor
      *
@@ -75,6 +78,24 @@ trait Data
             $this->messageId = $messageId;
         }
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTmid(): string
+    {
+        return $this->tmid;
+    }
+
+    /**
+     * @param string $tmId
+     * @return Data $this
+     */
+    public function setTmid(string $tmId)
+    {
+        $this->tmid = $tmId;
         return $this;
     }
 
@@ -457,6 +478,9 @@ trait Data
         $messageData = ['roomId' => $this->roomId];
         if (!is_null($this->text)) {
             $messageData['text'] = $this->text;
+        }
+        if (!is_null($this->tmid)) {
+            $messageData['tmid'] = $this->tmid;
         }
         if (!is_null($this->avatar)) {
             $messageData['avatar'] = $this->avatar;
